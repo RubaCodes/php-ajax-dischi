@@ -15,14 +15,15 @@
   <body>
     <div id="app">
       <header class="flex items-center justify-center py-2 bg-slate-700">
-        <form>
-          <select class="py-2 px-4" name="genre">
-            <option v-for="genre in getGenres" :value="genre">{{genre}}</option>
-          </select>
-          <button class="text-black bg-slate-200 py-1 px-4" type="submit">
-            submit
-          </button>
-        </form>
+        <select
+          @change.prevent="genreFilter"
+          class="py-2 px-4"
+          name="genre"
+          v-model="currentGenre"
+        >
+          <option disabled selected>--Seleziona genere--</option>
+          <option v-for="genre in getGenres" :value="genre">{{genre}}</option>
+        </select>
       </header>
       <main class="bg-slate-800 h-[100vh] flex items-center">
         <div class="container mx-auto">
