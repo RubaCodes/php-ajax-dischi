@@ -23,18 +23,24 @@ const app = new Vue({
   },
   computed: {
     getGenres() {
-      const genres = new Set();
-      genres.add('All');
-      this.albums.forEach((elm) => {
-        genres.add(elm.genre);
-      });
-      console.log(genres);
-      return Array.from(genres);
+      //condizione per no refresh dei generi
+      if (!this.filteredResponse.length) {
+        const genres = new Set();
+        genres.add('All');
+        this.albums.forEach((elm) => {
+          genres.add(elm.genre);
+        });
+        return Array.from(genres);
+      }
     },
   },
   created() {
     axios
-      .get('http://localhost:8888/php-ajax-dischi/server/api.php')
+      .get('http://localhost:8888/php-ajax-dischi/server/api.php?', {
+        params: {
+          genre: this.currentGenre,
+        },
+      })
       .then((response) => {
         this.albums = response.data;
       })
