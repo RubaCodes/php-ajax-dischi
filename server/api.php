@@ -5,4 +5,5 @@ require './database.php';
 
 
 header('Content-Type: application/json');
-echo json_encode($database);
+$response = json_encode($database);
+echo $response;
