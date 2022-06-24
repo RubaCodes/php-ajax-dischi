@@ -3,7 +3,6 @@ const app = new Vue({
   data: {
     albums: [],
     currentGenre: 'All',
-    filteredResponse: [],
   },
   methods: {
     genreFilter() {
@@ -24,14 +23,13 @@ const app = new Vue({
   computed: {
     getGenres() {
       //condizione per no refresh dei generi
-      if (!this.filteredResponse.length) {
-        const genres = new Set();
-        genres.add('All');
-        this.albums.forEach((elm) => {
-          genres.add(elm.genre);
-        });
-        return Array.from(genres);
-      }
+
+      const genres = new Set();
+      genres.add('All');
+      this.albums.forEach((elm) => {
+        genres.add(elm.genre);
+      });
+      return Array.from(genres);
     },
   },
   created() {
