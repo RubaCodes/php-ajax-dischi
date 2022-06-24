@@ -17,10 +17,12 @@ require_once './server/database.php';
     <main>
         <div class="container mx-auto">
             <section id="library">
-
-
+                <?php foreach ($database as $disk) { ?>
+                    <div class="card">
+                        <?php var_dump($disk) ?>
+                    </div>
+                <?php } ?>
             </section>
-
         </div>
 
     </main>
