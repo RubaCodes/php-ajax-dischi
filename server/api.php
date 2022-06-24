@@ -1,7 +1,8 @@
 <?php
 
-require_once 'database.php';
+require './database.php';
+
+
 
 header('Content-Type: application/json');
-
-json_encode($database);
+echo json_encode($database);
