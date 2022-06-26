@@ -3,6 +3,20 @@
 require './database.php';
 header('Content-Type: application/json');
 
+$allGenres = $_GET['allGenres'];
+
+if ($allGenres == 'true') {
+    $response = [];
+    foreach ($database as $album) {
+        $response[] = $album['genre'];
+    }
+    $response = array_unique($response);
+    echo json_encode($response);
+}
+
+
+
+// gestione filtraggio della risposta del genere
 $genre = $_GET['genre'];
 
 if (!empty($_GET)) {
