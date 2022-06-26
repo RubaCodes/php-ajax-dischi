@@ -22,7 +22,7 @@
           v-model="currentGenre"
         >
           <option disabled selected>--Seleziona genere--</option>
-          <option v-for="genre in getGenres" :value="genre">{{genre}}</option>
+          <option v-for="genre in allGenres" :value="genre">{{genre}}</option>
         </select>
       </header>
       <main class="bg-slate-800 h-[100vh] flex items-center">

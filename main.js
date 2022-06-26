@@ -3,6 +3,7 @@ const app = new Vue({
   data: {
     albums: [],
     currentGenre: 'All',
+    allGenres: [],
   },
   methods: {
     genreFilter() {
@@ -20,19 +21,8 @@ const app = new Vue({
         });
     },
   },
-  computed: {
-    getGenres() {
-      //condizione per no refresh dei generi
-
-      const genres = new Set();
-      genres.add('All');
-      this.albums.forEach((elm) => {
-        genres.add(elm.genre);
-      });
-      return Array.from(genres);
-    },
-  },
   created() {
+    //fetch database album
     axios
       .get('http://localhost:8888/php-ajax-dischi/server/api.php?', {
         params: {
@@ -41,6 +31,19 @@ const app = new Vue({
       })
       .then((response) => {
         this.albums = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    //fetch tutti generi
+    axios
+      .get('http://localhost:8888/php-ajax-dischi/server/api.php?', {
+        params: {
+          fetchGenres: true,
+        },
+      })
+      .then((response) => {
+        this.allGenres = response.data;
       })
       .catch((error) => {
         console.log(error);

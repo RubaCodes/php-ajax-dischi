@@ -3,13 +3,14 @@
 require './database.php';
 header('Content-Type: application/json');
 
-$allGenres = $_GET['allGenres'];
+$fetchGenres = $_GET['fetchGenres'];
 
-if ($allGenres == 'true') {
-    $response = [];
+if ($fetchGenres == 'true') {
+    $response[] = "All";
     foreach ($database as $album) {
         $response[] = $album['genre'];
     }
+
     $response = array_unique($response);
     echo json_encode($response);
 }
